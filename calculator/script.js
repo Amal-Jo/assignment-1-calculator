@@ -20,10 +20,6 @@ $(document).ready(function(){
         display.val('') ;
     });
 
-    $('.calCbtn').click(function(){
-        var buttonValue = $(this).val();
-        handleNumbers(buttonValue);
-    })
     $('.calcBtnOperator').click(function(){
         var buttonValue = $(this).val();
         handleOperators(buttonValue);
@@ -110,6 +106,17 @@ $(document).ready(function(){
             input = parseFloat(input);
             addQueue(input); // adding the thirst value to the arra ie:the value comes after operator
         }  
+
+        var length = value.length;
+        var flag = false;
+        var lastCharacter=value[length-1];
+        if(lastCharacter == '+' || lastCharacter == '-' || lastCharacter == '*' || lastCharacter == '/') {
+            flag =true;
+        }
+        if(flag) {
+            display2.val('ERROR');
+            return;
+        }
         var answer = value[0];
         var dividedByZero = 0;
         for (var i = 2; i < value.length; i = i + 2) {
